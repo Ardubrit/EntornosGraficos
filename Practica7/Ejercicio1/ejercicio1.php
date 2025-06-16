@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,7 +14,6 @@
     ?>
     <link id="themeStylesheet" rel="stylesheet" href="<?php echo $style; ?>.css">
 </head>
-
 <body>
     <h1>Bienvenidos</h1>
     <form id="styleForm" action="" method="post">
@@ -27,7 +25,6 @@
         </select>
         <button type="submit">Aplicar estilo</button>
     </form>
-
     <?php
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $selectedStyle = $_POST['style'];
@@ -36,5 +33,4 @@
     }
     ?>
 </body>
-
 </html>

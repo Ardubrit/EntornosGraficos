@@ -1,33 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
 </head>
-
 <body>
   <?php
-  session_start();
-  $link = mysqli_connect("localhost", "root","") or die ("Problemas de conexión a la base de datos");
-  mysqli_select_db($link, "prueba");
-  $cancion = $_POST['cancion'];
-  $vSql = "SELECT * FROM buscador where cancion LIKE '%" . $cancion . "%'";
-  $vResultado = mysqli_query($link, $vSql);
-  $total_registros = mysqli_num_rows($vResultado);
-  if ($total_registros > 0) {
-    while ($fila=mysqli_fetch_array($vResultado)) {
-        $canciones= $fila['cancion'];
-        setcookie('canciones', $canciones, time()+ 3600*24*365);
+    $servername = "localhost";
+    $username = "root"; 
+    $password = "";
+    $dbname = "prueba";
+
+    $conn = new mysqli($servername, $username, $password, $dbname);
+    if ($conn->connect_error) {
+      die("Error de conexión: " . $conn->connect_error);
     }
-  }else{
-    setcookie('canciones', null, time() + 3600 * 24 * 365);
-  }
-  header("Location: index.php");
+    $cancion = $_POST['cancion'];
+
+    $resultados=mysqli_query($conn,"SELECT * from buscador where canciones LIKE '%" . $cancion . "'");
+
+    while($fila = mysqli_fetch_array($resultados))
+    {
+    ?>
+    <tr>
+    <td><?php echo ($fila[0]); ?></td>
+    </tr>
+    <tr>
+    <td colspan="5">
+    <?php
+    }
+    $conn->close();
   ?>
-
-
 </body>
-
 </html>

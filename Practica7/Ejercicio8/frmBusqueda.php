@@ -8,17 +8,10 @@
 </head>
 
 <body>
-  <?php
-  if (isset($_COOKIE['canciones'])) {
-    $mibusqueda = $_COOKIE['canciones'];
-  } else {
-    $mibusqueda = '';
-  }
-  ?>
-
+ 
   <form action="buscador.php" method="POST">
     Cancion<input type="text" name="cancion">
-    <button type="submit">Enviar</button>
+    <button type="submit">Buscar</button>
   </form>
 
   <?php
